@@ -14,7 +14,9 @@ public class SimulateBattleImpl implements SimulateBattle {
     @Override
     public void simulate(Army playerArmy, Army computerArmy) throws InterruptedException {
         List<Unit> playerUnits = playerArmy.getUnits();
+        playerUnits.sort(Comparator.comparing(Unit::getCost).reversed());
         List<Unit> computerUnits = computerArmy.getUnits();
+        computerUnits.sort(Comparator.comparing(Unit::getCost).reversed());
 
         while (!playerUnits.isEmpty() && !computerUnits.isEmpty()) {
             armyAttack(playerUnits);
